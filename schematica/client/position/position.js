@@ -10,10 +10,15 @@ Template.position.rendered = function(){
 };
 
 Template.position.events({
-    'click .icon-tasks': function(evt, tmpl){
+    'click .icon-pencil': function(evt, tmpl){
         evt.stopPropagation();
         evt.preventDefault();
         Session.set('editing_tablename', this._id);
+    },
+    'click .close': function(evt, tmpl){
+        evt.stopPropagation();
+        evt.preventDefault();
+        Positions.remove({_id: this._id});
     },
     'click .addfield':function(evt, tmpl){
         evt.stopPropagation();
@@ -35,6 +40,6 @@ Template.position.helpers({
        return Session.equals('editing_tablename', this._id);
     },
     dbfields: function(){
-        return DBfields.find();
+        return DBfields.find({tableid: this._id});
     }
 });
