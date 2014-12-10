@@ -4,6 +4,11 @@ Template.dbfield.events({
         evt.preventDefault();
         Session.set('editing_field', this._id);
     },
+    'click .icon-trash':function(evt, tmpl){
+        evt.stopPropagation();
+        evt.preventDefault();
+        DBfields.remove({_id:this._id});
+    },
     'keyup .efield': function(evt, tmpl){
         evt.stopPropagation();
         evt.preventDefault();
